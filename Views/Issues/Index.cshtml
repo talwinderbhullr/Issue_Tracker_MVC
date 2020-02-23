@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Issue_Tracker_MVC.Models.Issue>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Issues </h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Add</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IssueId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IssueReporter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignee.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IssueReporter.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportedDate)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
